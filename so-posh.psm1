@@ -62,6 +62,7 @@ Export-ModuleMember `
     'Remove-EnvPathDuplicates'
     'Remove-EnvPathVariable'
     'Set-ActiveTheme'
+    'Show-CommandDetails'
     'Update-PR'
     'Update-Profile'
   ) `

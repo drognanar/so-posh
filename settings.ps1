@@ -21,6 +21,7 @@ if ($null -eq $script:SoPoshPlugins) {
     'readline/navigation',
     'readline/shebang',
     'themes',
+    'utils/commands'
     'utils/execute_in_dir',
     'utils/modules',
     'utils/notifications',
