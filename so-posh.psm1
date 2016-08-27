@@ -64,7 +64,6 @@ Export-ModuleMember `
     'Remove-EnvPathVariable'
     'Set-ActiveTheme'
     'Show-CommandDetails'
-    'Update-PR'
     'Update-Profile'
   ) `
   -Alias @(
