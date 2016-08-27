@@ -7,6 +7,22 @@ function global:prompt {
   . $script:PoshTemplateManager.themes[$script:PoshTemplateManager.activeTheme]
 }
 
+function Test-LongRunningCommand($commandExecutionInfo) {
+  $timeTaken = $lastExecutingCommand.ExecutionTime
+  if ($timeTaken.TotalSeconds -lt $script:SoPoshLastCommandNotificationTimeout) {
+    return $false
+  }
+
+  $command = $lastExecutingCommand.HistoryInfo
+  foreach ($interactiveCommand in $script:SoPoshInteractiveCommands) {
+    if ($interactiveCommand -match $command) {
+      return $false
+    }
+  }
+
+  return $true
+}
+
 <#
 .SYNOPSIS
   Add a new user theme.
@@ -32,9 +48,9 @@ function New-LastCommandNotification {
     return
   }
 
-  $executionTime = (Get-ExecutionTime)[-1]
-  if ($executionTime.ExecutionTime.TotalSeconds -gt $script:SoPoshLastCommandNotificationTimeout) {
-    New-SuccessNotification $executionTime.HistoryInfo
+  $lastExecutingCommand = (Get-ExecutionTime)[-1]
+  if (Test-LongRunningCommand $lastExecutingCommand) {
+    New-SuccessNotification $lastExecutingCommand.HistoryInfo
   }
 }
 

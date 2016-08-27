@@ -47,3 +47,13 @@ $script:SoPoshLastCommandNotificationTimeout = $global:SoPoshLastCommandNotifica
 if ($null -eq $script:SoPoshLastCommandNotificationTimeout) {
   $script:SoPoshLastCommandNotificationTimeout = 0
 }
+
+# Do not make a notification if one of the following commands executes for a long time.
+$script:SoPoshInteractiveCommands = $global:SoPoshInteractiveCommands
+if ($null -eq $script:SoPoshInteractiveCommands) {
+  $script:SoPoshInteractiveCommands = @(
+    'cmd',
+    'powershell',
+    'python',
+    'ruby')
+}
