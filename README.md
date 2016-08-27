@@ -1,38 +1,39 @@
 An Oh-My-Zsh inspired set of dotfiles for PowerShell (PoSh).
 
-# Features
+# Summary of features
 
-## Navigation
-* Navigate directories without having to type `cd`
-* Go to previous folder with `Ctrl+[`
-* Go to next folder with `Ctrl+]`
-* Go to parent folder with `Ctrl+\`
-
-## Notifications
-* Create notifications with `New-Notification`
-* Automatically notify of long running commands
-
-## Git
-* Create gitignore files using `New-Gitignore` (based on [gitignore.io](http://gitignore.io))
-
-## Readline
-* Run files with shebang by entering a filename
-* Execute a command in a directory using `Invoke-InDir`
-* Themes
-
-## Profile
-* Reload dotfiles with `Ctrl+Shift+R` or `Update-Profile`
-* Edit dotfiles with `Ctrl+Shift+E` or `Edit-Profile`
-
-## Additional modules included
-* pscx - many additional helper functions
-* Jump.Location - efficient `cd` between directories
-* Posh-Git - powershell git integration
+* Navigation
+    * `z` - navigate to a directory anywhere on disk matching that name using [Jump.Location](https://github.com/tkellogg/Jump-Location)
+    * Enter `folder/` to cd into that folder (instead of having to type `cd folder`)
+    * Go to previous folder with `Ctrl+[`
+    * Go to next folder with `Ctrl+]`
+    * Go to parent folder with `Ctrl+\`
+* Notifications
+    * `New-Notification` - create a tooltip notification
+    * Automatically notify of long running commands
+* Git
+    * `New-Gitignore` - create gitignore files (based on [gitignore.io](http://gitignore.io))
+    * `Get-PR` - fetch a PR from github
+* Readline
+    * Run files with shebang by entering a filename
+    * `Set-ActiveTheme` - specify a theme used to generate a prompt
+    * `Register-Theme` - create a new prompt
+* Utilities
+    * `Invoke-InDir` - execute a command in a specific directory
+    * `Show-CommandDetails` - show command definition. If no parameters given displays all commands
+    * `Update-Profile` - reload dotfiles. Bound to: `Ctrl+Shift+R` and `F5`
+    * `Edit-Profile` - edit dotfiles. Bound to `Ctrl+Shift+E` and `F12`
+* VsCode
+    * `Invoke-VsCode` - starts vscode by default reusing the existing window
+* Additional modules included
+    * pscx - many additional helper functions
+    * Jump.Location - efficient `cd` between directories
+    * Posh-Git - powershell git integration
 
 # Create your own dotfiles
 
 To create your own dotfiles just run `New-SoPoshModule <name>` command.
-This will create a new module under `~\Documents\WindowsPowerShell\Modules\<name>`.
+This will create a new module under `~\Documents\WindowsPowerShell\Modules\<name>` which will load any `.ps1` files under that path of powershell startup.
 
 # Installation
 
@@ -51,3 +52,9 @@ Or, you should create a shortcut for powershell that invokes `powershell -NoExit
 
 # Settings
 
+* `$global:SoPoshAutoloadModules` - automatically loads the following modules on PowerShell startup
+* `$global:SoPoshPlugins` - loads the following so-posh powershell scripts. By default lists all so-posh scripts.
+* `$global:SoPoshActiveTheme` - theme with which powershell will start
+* `$global:SoPoshVisualStudioVersion` - visual studio version for which to load enviornment variables
+* `$global:SoPoshLastCommandNotificationTimeout` - timeout in seconds after which to notify of long running commands
+* `$global:SoPoshInteractiveCommands` - lists commands for which notifications should not be created
