@@ -1,4 +1,4 @@
-if (($null -eq (Get-Module "PSReadline" -ErrorAction SilentlyContinue)) -or ($script:PoshPlugins -notcontains 'readline/shebang')) {
+if (($null -eq (Get-Module "PSReadline" -ErrorAction SilentlyContinue)) -or ($script:PoshPlugins -notcontains 'readline')) {
     return
 }
 
