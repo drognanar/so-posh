@@ -10,7 +10,7 @@
 #>
 function Show-CommandDetails($name = $null, $modules=@()) {
   if ($null -eq $name) {
-    Get-Command -All -Module $modules | select name, definition
+    Get-Command -All -Module $modules | sort name | select name, definition
   } else {
     Get-Command $name | % { "name: $($_.Name)`ncommand: $($_.Definition)" }
   }
