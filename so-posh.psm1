@@ -53,6 +53,7 @@ Export-ModuleMember `
     'Invoke-InDir'
     'Invoke-MSBuild'
     'Invoke-Shortcut'
+    'Invoke-VsCode'
     'Move-EnvPathVariable'
     'New-Gitignore'
     'New-Notification'

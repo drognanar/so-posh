@@ -27,7 +27,8 @@ if ($null -eq $script:SoPoshPlugins) {
     'utils/notifications',
     'utils/port',
     'utils/profile',
-    'visualstudio')
+    'visualstudio',
+    'vscode')
 }
 
 # Specifies the default theme to be used by powershell.
