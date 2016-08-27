@@ -47,7 +47,7 @@ Export-ModuleMember `
         ':8888'
         'Add-PoshModuleToProfile'
         'Edit-Profile'
-        'Get-GithubPR'
+        'Get-PR'
         'Invoke-Devenv'
         'Invoke-ILdasm'
         'Invoke-InDir'
@@ -62,6 +62,7 @@ Export-ModuleMember `
         'Remove-EnvPathDuplicates'
         'Remove-EnvPathVariable'
         'Set-ActiveTheme'
+        'Update-PR'
         'Update-Profile'
     ) `
     -Alias @(
