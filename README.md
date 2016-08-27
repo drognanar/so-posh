@@ -10,7 +10,7 @@ An Oh-My-Zsh inspired set of dotfiles for PowerShell (PoSh).
 
 ## Notifications
 * Create notifications with `New-Notification`
-* Prompt automatically notifies of long running commands
+* Automatically notify of long running commands
 
 ## Git
 * Create gitignore files using `New-Gitignore` (based on [gitignore.io](http://gitignore.io))

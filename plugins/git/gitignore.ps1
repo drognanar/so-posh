@@ -1,5 +1,11 @@
-# Based on gitignore.io script
-#For PowerShell v3
+<#
+.SYNOPSIS
+  Creates new .gitignore file.
+
+.NOTES
+  Based on gitignore.io script
+  For PowerShell v3
+#>
 Function New-Gitignore {
   param(
     [Parameter(Mandatory=$true)]
