@@ -2,18 +2,24 @@ if (($null -eq (Get-Module "PSReadline" -ErrorAction SilentlyContinue)) -or ($sc
     return
 }
 
-# This script allows to execute a script if it contains a shebang
-# just by typing the script path.
+<#
+.SYNOPSIS
+    Execute `ruby ./file` just by entering `./file` for a file which contains `#!/bin/ruby`
 
-# Run the command if file file starts with a shebang.
-# For instance given file bin/a.rb
-# ```
-# #!ruby
-# puts 'Hello World'
-# ```
-# Typing `cd bin; ./a.rb` execute `ruby ./a.rb`
-# Typing `cd bin; a.rb` will not execute `ruby a.rb`
-# Typing `bin/a.rb` will execute `ruby bin/a.rb` 
+.DESCRIPTION
+    This script allows to execute a script if it contains a shebang
+    just by typing the script path.
+
+    Run the command if file file starts with a shebang.
+    For instance given file bin/a.rb
+    ```
+    #!ruby
+    puts 'Hello World'
+    ```
+    Typing `cd bin; ./a.rb` execute `ruby ./a.rb`
+    Typing `cd bin; a.rb` will not execute `ruby a.rb`
+    Typing `bin/a.rb` will execute `ruby bin/a.rb`
+#>
 function AutoRunShebang($isCommandToken, $command) {
     if (-not $isCommandToken) {
         return $false

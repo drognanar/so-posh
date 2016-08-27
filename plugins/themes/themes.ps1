@@ -7,15 +7,26 @@ function global:prompt {
     . $script:PoshTemplateManager.themes[$script:PoshTemplateManager.activeTheme]
 }
 
+<#
+.SYNOPSIS
+    Add a new user theme.
+#>
 function Register-Theme($templateName, $script) {
     $script:PoshTemplateManager.themes[$templateName] = $script
 }
 
+<#
+.SYNOPSIS
+    Sets the theme which is used to generate the prompt.
+#>
 function Set-ActiveTheme($templateName) {
     $script:PoshTemplateManager.activeTheme = $templateName
 }
 
-# Create a success notification is last command has been executing for a long time.
+<#
+.SYNOPSIS
+    Creates a notification if the last command has been executing for a long time.
+#>
 function New-LastCommandNotification {
     if ($script:PoshPlugins -notcontains 'utils/notifications' -or $script:LastCommandNotificationTimeout -eq 0) {
         return

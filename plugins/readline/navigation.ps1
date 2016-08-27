@@ -2,13 +2,19 @@ if (($null -eq (Get-Module "PSReadline" -ErrorAction SilentlyContinue)) -or ($sc
     return
 }
 
-# This script improves navigation in PowerShell:
-# 1) It allows to cd into folders just by typing the folder name (`~/Documents`)
-# 2) It allows to go to previous/next/parent directory by pressing Ctrl+[ Ctrl+] Ctrl+\
+<#
+.SYNOPSIS
+    Automatically perform `cd path` command just by entering `path`.
 
-# Function that allows to cd into folders by typing `directory/`
-# The completion triggers only if an invalid command was entered.
-# Typing `~/Documents/` will execute `cd ~/Documents/`
+.DESCRIPTION
+    This script improves navigation in PowerShell:
+    1) It allows to cd into folders just by typing the folder name (`~/Documents`)
+    2) It allows to go to previous/next/parent directory by pressing Ctrl+[ Ctrl+] Ctrl+\
+
+    Function that allows to cd into folders by typing `directory/`
+    The completion triggers only if an invalid command was entered.
+    Typing `~/Documents/` will execute `cd ~/Documents/`
+#>
 function AutoCompleteCd($isCommandToken, $commandTokenCandidate, $tokens) {
     $potentialPath = Get-PSReadlineTokenValue $commandTokenCandidate
     $isFinalToken = $tokens[-1] -eq $commandTokenCandidate -or $tokens[-2] -eq $commandTokenCandidate

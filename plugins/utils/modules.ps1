@@ -1,4 +1,7 @@
-# Add an Import-Module statement to profile if one is missing.
+<#
+.SYNOPSIS
+    Add an Import-Module statement for a particular module to $Profile if one is missing.
+#>
 function Add-PoshModuleToProfile($ModuleName) {
     $profileContent = Get-Content $PROFILE -Raw
     if ($profileContent -notmatch "Import-Module $ModuleName") {
@@ -7,8 +10,18 @@ function Add-PoshModuleToProfile($ModuleName) {
     }
 }
 
-# Creates a posh module directory.
-# Adds it to be loaded by userprofile.ps1.
+<#
+.SYNOPSIS
+    Creates a new posh module.
+
+.DESCRIPTION
+    Creates a directory under ~\Documents\WindowsPowerShell\Modules that
+    contains a new module. The module is loaded and added to $PROFILE.
+
+    New functionality can be loaded on profile startup by creating ps1 files,
+    since the module definition loads all ps1 files in the directory.
+
+#>
 function New-PoshModule($ModuleName) {
     $moduleTemplatePath = Join-Path $PSScriptRoot '../../profile/templates/module'
     $moduleDir = "$PROOT\Modules\$ModuleName"

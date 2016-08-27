@@ -1,11 +1,18 @@
 # This script defines shortcuts for reloading and editing profile.
 
-# A script that reloads the current user's profile.
+<#
+.SYNOPSIS
+    Reloads the current user's profile.
+#>
 function Update-Profile() {
     $global:USERPROFILE = $true
     Invoke-Shortcut '. $PROFILE'
 }
 
+<#
+.SYNOPSIS
+    Opens the profile folder in the default text editor.
+#>
 function Edit-Profile() {
     & $env:EDITOR $PROOT
 }
