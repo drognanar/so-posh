@@ -32,6 +32,6 @@ function New-SoPoshModule($ModuleName) {
     Copy-Item -Recurse $moduleTemplatePath $moduleDir
     Move-Item $initPath $modulePath
     Add-SoPoshModuleToProfile $ModuleName
-    Import-Module $ModuleName
+    Import-Module $ModuleName -Global
   }
 }

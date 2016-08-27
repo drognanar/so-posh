@@ -1,4 +1,4 @@
-Import-Module so-posh
+Import-Module so-posh -Global
 
 # Load all other ps1 files in this directory.
 # Besides `install.ps1` which is used when installing a module.
