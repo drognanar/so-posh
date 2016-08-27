@@ -17,6 +17,7 @@ if ($null -eq $script:PoshPlugins) {
         'git/gitignore',
         'pscx/path',
         'readline',
+        'readline/bell',
         'readline/navigation',
         'readline/shebang',
         'themes',
