@@ -11,7 +11,8 @@ if (($null -eq (Get-Module "PSReadline" -ErrorAction SilentlyContinue)) -or ($sc
 # Typing `~/Documents/` will execute `cd ~/Documents/`
 function AutoCompleteCd($isCommandToken, $commandTokenCandidate, $tokens) {
     $potentialPath = Get-PSReadlineTokenValue $commandTokenCandidate
-    if ([string]::IsNullOrEmpty($potentialPath) -or $tokens.Length -gt 2) {
+    $isFinalToken = $tokens[-1] -eq $commandTokenCandidate -or $tokens[-2] -eq $commandTokenCandidate
+    if ([string]::IsNullOrEmpty($potentialPath) -or -not $isFinalToken) {
         return $false
     }
 
