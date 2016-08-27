@@ -24,6 +24,6 @@ if ([System.IO.File]::Exists($PROFILE)) {
 }
 
 Write-Host "> Creating a home-profile folder for dotfiles..."
-New-PoshModule 'home-profile'
+New-SoPoshModule 'home-profile'
 
 Write-Host "Installed so-posh" -ForegroundColor Green

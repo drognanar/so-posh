@@ -31,7 +31,7 @@ An Oh-My-Zsh inspired set of dotfiles for PowerShell (PoSh).
 
 # Create your own dotfiles
 
-To create your own dotfiles just run `New-PoshModule <name>` command.
+To create your own dotfiles just run `New-SoPoshModule <name>` command.
 This will create a new module under `~\Documents\WindowsPowerShell\Modules\<name>`.
 
 # Installation
