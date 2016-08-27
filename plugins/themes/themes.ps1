@@ -1,12 +1,16 @@
-$script:PoshTemplateManager = New-Object PSObject -Property @{
+$script:SoPoshTemplateManager = New-Object PSObject -Property @{
   themes = @{}
   activeTheme = 'default'
 }
 
 function global:prompt {
-  . $script:PoshTemplateManager.themes[$script:PoshTemplateManager.activeTheme]
+  . $script:SoPoshTemplateManager.themes[$script:SoPoshTemplateManager.activeTheme]
 }
 
+<#
+.SYNOPSIS
+  Returns whether a command should be treated as long running and should generate a notification.
+#>
 function Test-LongRunningCommand($commandExecutionInfo) {
   $timeTaken = $lastExecutingCommand.ExecutionTime
   if ($timeTaken.TotalSeconds -lt $script:SoPoshLastCommandNotificationTimeout) {
@@ -28,7 +32,7 @@ function Test-LongRunningCommand($commandExecutionInfo) {
   Add a new user theme.
 #>
 function Register-Theme($templateName, $script) {
-  $script:PoshTemplateManager.themes[$templateName] = $script
+  $script:SoPoshTemplateManager.themes[$templateName] = $script
 }
 
 <#
@@ -36,7 +40,7 @@ function Register-Theme($templateName, $script) {
   Sets the theme which is used to generate the prompt.
 #>
 function Set-ActiveTheme($templateName) {
-  $script:PoshTemplateManager.activeTheme = $templateName
+  $script:SoPoshTemplateManager.activeTheme = $templateName
 }
 
 <#
