@@ -8,5 +8,5 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-[*.ps1]
+[*.{ps1, psm1}]
 indent_size = 2
