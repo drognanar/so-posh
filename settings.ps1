@@ -1,8 +1,8 @@
 # TODO(drognanar): Can we defer loading the following modules?
 # By default load modules.
-$script:PoshAutoloadModules = $global:PoshAutoloadModules
-if ($null -eq $script:PoshAutoloadModules) {
-  $script:PoshAutoloadModules = @(
+$script:SoPoshAutoloadModules = $global:SoPoshAutoloadModules
+if ($null -eq $script:SoPoshAutoloadModules) {
+  $script:SoPoshAutoloadModules = @(
     "PSReadline",
     "pscx",
     "posh-git",
@@ -10,9 +10,9 @@ if ($null -eq $script:PoshAutoloadModules) {
 }
 
 # By default load all plugins.
-$script:PoshPlugins = $global:PoshPlugins
-if ($null -eq $script:PoshPlugins) {
-  $script:PoshPlugins = @(
+$script:SoPoshPlugins = $global:SoPoshPlugins
+if ($null -eq $script:SoPoshPlugins) {
+  $script:SoPoshPlugins = @(
     'git/github',
     'git/gitignore',
     'pscx/path',
@@ -30,19 +30,19 @@ if ($null -eq $script:PoshPlugins) {
 }
 
 # Specifies the default theme to be used by powershell.
-$script:PoshActiveTheme = $global:PoshActiveTheme
-if ($null -eq $script:PoshActiveTheme) {
-  $script:PoshActiveTheme = 'default'
+$script:SoPoshActiveTheme = $global:SoPoshActiveTheme
+if ($null -eq $script:SoPoshActiveTheme) {
+  $script:SoPoshActiveTheme = 'default'
 }
 
 # Automatically try to import variables from the latest visual studio.
-$script:VisualStudioVersion = $global:VisualStudioVersion
-if ($null -eq $script:VisualStudioVersion) {
-  $script:VisualStudioVersion = "140"
+$script:SoPoshVisualStudioVersion = $global:SoPoshVisualStudioVersion
+if ($null -eq $script:SoPoshVisualStudioVersion) {
+  $script:SoPoshVisualStudioVersion = "140"
 }
 
 # If greater than 0 then prompt will notify of any commands that executed for more seconds than the timeout.
-$script:LastCommandNotificationTimeout = $global:LastCommandNotificationTimeout
-if ($null -eq $script:LastCommandNotificationTimeout) {
-  $script:LastCommandNotificationTimeout = 0
+$script:SoPoshLastCommandNotificationTimeout = $global:SoPoshLastCommandNotificationTimeout
+if ($null -eq $script:SoPoshLastCommandNotificationTimeout) {
+  $script:SoPoshLastCommandNotificationTimeout = 0
 }

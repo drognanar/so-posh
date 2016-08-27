@@ -1,7 +1,7 @@
 . "$PSScriptRoot\settings.ps1"
 
 # Import all autoloaded modules.
-$script:PoshAutoloadModules | % {
+$script:SoPoshAutoloadModules | % {
   if ($_ -is [Hashtable]) {
     $moduleName = $_.Name
     $modulePrefix = $_.Prefix
@@ -30,7 +30,7 @@ function Import-PoshPlugin($plugin) {
 # Import all autoloaded plugins.
 try {
   pushd $PSScriptRoot
-  foreach ($plugin in $script:PoshPlugins) {
+  foreach ($plugin in $script:SoPoshPlugins) {
     . Import-PoshPlugin $plugin
   }
 } finally {

@@ -28,16 +28,16 @@ function Set-ActiveTheme($templateName) {
   Creates a notification if the last command has been executing for a long time.
 #>
 function New-LastCommandNotification {
-  if ($script:PoshPlugins -notcontains 'utils/notifications' -or $script:LastCommandNotificationTimeout -eq 0) {
+  if ($script:SoPoshPlugins -notcontains 'utils/notifications' -or $script:SoPoshLastCommandNotificationTimeout -eq 0) {
     return
   }
 
   $executionTime = (Get-ExecutionTime)[-1]
-  if ($executionTime.ExecutionTime.TotalSeconds -gt $script:LastCommandNotificationTimeout) {
+  if ($executionTime.ExecutionTime.TotalSeconds -gt $script:SoPoshLastCommandNotificationTimeout) {
     New-SuccessNotification $executionTime.HistoryInfo
   }
 }
 
 ls .\themes\*.ps1 | ForEach-Object { . $_ }
 
-Set-ActiveTheme $script:PoshActiveTheme
+Set-ActiveTheme $script:SoPoshActiveTheme

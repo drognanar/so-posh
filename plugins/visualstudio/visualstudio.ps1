@@ -8,7 +8,7 @@
 #>
 function Enable-DeveloperCommandPrompt([Switch]$Force=$false) {
   if ($force -or ($null -eq $env:DevEnvDir)) {
-    Import-VisualStudioVars $script:VisualStudioVersion
+    Import-VisualStudioVars $script:SoPoshVisualStudioVersion
   }
 }
 
