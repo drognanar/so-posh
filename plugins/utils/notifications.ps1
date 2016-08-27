@@ -4,18 +4,18 @@
   Create a PowerShell notification.
 
 .DESCRIPTION
-    This script provides a function to create a system notification.
-    Can be used to notify about scripts status.
-    Taken from https://technet.microsoft.com/en-us/library/ff730952.aspx
+  This script provides a function to create a system notification.
+  Can be used to notify about scripts status.
+  Taken from https://technet.microsoft.com/en-us/library/ff730952.aspx
 #>
 function New-Notification($message, $title="", $icon="info") {
-    [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
-    [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
-    $objNotifyIcon = New-Object System.Windows.Forms.NotifyIcon
-    $objNotifyIcon.Icon = [System.Drawing.SystemIcons]::Information
-    $objNotifyIcon.Visible = $True
-    $objNotifyIcon.ShowBalloonTip(60000, $title, $message, $icon)
-    $objNotifyIcon.Visible = $False
+  [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
+  [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
+  $objNotifyIcon = New-Object System.Windows.Forms.NotifyIcon
+  $objNotifyIcon.Icon = [System.Drawing.SystemIcons]::Information
+  $objNotifyIcon.Visible = $True
+  $objNotifyIcon.ShowBalloonTip(60000, $title, $message, $icon)
+  $objNotifyIcon.Visible = $False
 }
 
 <#
@@ -28,7 +28,7 @@ function New-Notification($message, $title="", $icon="info") {
 #>
 function New-SuccessNotification($successMessage, $failMessage) {
   if ($failMessage -eq $null) {
-      $failMessage = $successMessage
+    $failMessage = $successMessage
   }
 
   if ($?) {

@@ -1,7 +1,7 @@
 Register-Theme 'default' {
-    New-LastCommandNotification
+  New-LastCommandNotification
 
-    Write-Host 'PS ' -nonewline
-    Write-Host($pwd.ProviderPath) -nonewline
-    return "> "
+  Write-Host 'PS ' -nonewline
+  Write-Host($pwd.ProviderPath) -nonewline
+  return "> "
 }

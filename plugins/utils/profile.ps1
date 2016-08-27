@@ -2,19 +2,19 @@
 
 <#
 .SYNOPSIS
-    Reloads the current user's profile.
+  Reloads the current user's profile.
 #>
 function Update-Profile() {
-    $global:USERPROFILE = $true
-    Invoke-Shortcut '. $PROFILE'
+  $global:USERPROFILE = $true
+  Invoke-Shortcut '. $PROFILE'
 }
 
 <#
 .SYNOPSIS
-    Opens the profile folder in the default text editor.
+  Opens the profile folder in the default text editor.
 #>
 function Edit-Profile() {
-    & $env:EDITOR $PROOT
+  & $env:EDITOR $PROOT
 }
 
 Set-PSReadlineKeyHandler -Key Ctrl+Shift+r -ScriptBlock { Update-Profile }

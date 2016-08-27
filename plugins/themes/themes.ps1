@@ -1,41 +1,41 @@
 $script:PoshTemplateManager = New-Object PSObject -Property @{
-    themes = @{}
-    activeTheme = 'default'
+  themes = @{}
+  activeTheme = 'default'
 }
 
 function global:prompt {
-    . $script:PoshTemplateManager.themes[$script:PoshTemplateManager.activeTheme]
+  . $script:PoshTemplateManager.themes[$script:PoshTemplateManager.activeTheme]
 }
 
 <#
 .SYNOPSIS
-    Add a new user theme.
+  Add a new user theme.
 #>
 function Register-Theme($templateName, $script) {
-    $script:PoshTemplateManager.themes[$templateName] = $script
+  $script:PoshTemplateManager.themes[$templateName] = $script
 }
 
 <#
 .SYNOPSIS
-    Sets the theme which is used to generate the prompt.
+  Sets the theme which is used to generate the prompt.
 #>
 function Set-ActiveTheme($templateName) {
-    $script:PoshTemplateManager.activeTheme = $templateName
+  $script:PoshTemplateManager.activeTheme = $templateName
 }
 
 <#
 .SYNOPSIS
-    Creates a notification if the last command has been executing for a long time.
+  Creates a notification if the last command has been executing for a long time.
 #>
 function New-LastCommandNotification {
-    if ($script:PoshPlugins -notcontains 'utils/notifications' -or $script:LastCommandNotificationTimeout -eq 0) {
-        return
-    }
+  if ($script:PoshPlugins -notcontains 'utils/notifications' -or $script:LastCommandNotificationTimeout -eq 0) {
+    return
+  }
 
-    $executionTime = (Get-ExecutionTime)[-1]
-    if ($executionTime.ExecutionTime.TotalSeconds -gt $script:LastCommandNotificationTimeout) {
-        New-SuccessNotification $executionTime.HistoryInfo
-    }
+  $executionTime = (Get-ExecutionTime)[-1]
+  if ($executionTime.ExecutionTime.TotalSeconds -gt $script:LastCommandNotificationTimeout) {
+    New-SuccessNotification $executionTime.HistoryInfo
+  }
 }
 
 ls .\themes\*.ps1 | ForEach-Object { . $_ }

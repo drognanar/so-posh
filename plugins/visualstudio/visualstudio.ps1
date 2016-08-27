@@ -1,15 +1,15 @@
 <#
 .SYNOPSIS
-    Loads visual studio environment variables.
+  Loads visual studio environment variables.
 
 .DESCRIPTION
-    Loads visual studio environment variables.
-    This method does not do anything if called for the second time.
+  Loads visual studio environment variables.
+  This method does not do anything if called for the second time.
 #>
 function Enable-DeveloperCommandPrompt([Switch]$Force=$false) {
-    if ($force -or ($null -eq $env:DevEnvDir)) {
-        Import-VisualStudioVars $script:VisualStudioVersion
-    }
+  if ($force -or ($null -eq $env:DevEnvDir)) {
+    Import-VisualStudioVars $script:VisualStudioVersion
+  }
 }
 
 # Create a shim for visual studio commands to load the environment only if one
@@ -17,18 +17,18 @@ function Enable-DeveloperCommandPrompt([Switch]$Force=$false) {
 # This is done to avoid loading visual studio vars on every profile startup.
 
 function Invoke-Devenv {
-    Enable-DeveloperCommandPrompt
-    devenv.exe @args
+  Enable-DeveloperCommandPrompt
+  devenv.exe @args
 }
 
 function Invoke-ILdasm {
-    Enable-DeveloperCommandPrompt
-    ildasm.exe @args
+  Enable-DeveloperCommandPrompt
+  ildasm.exe @args
 }
 
 function Invoke-MSBuild {
-    Enable-DeveloperCommandPrompt
-    msbuild.exe @args
+  Enable-DeveloperCommandPrompt
+  msbuild.exe @args
 }
 
 Set-Alias devenv  Invoke-Devenv
