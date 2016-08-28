@@ -1,7 +1,7 @@
 $PROOT = [System.IO.Path]::GetDirectoryName($PROFILE)
 
 # Allow to reload profile and load all modules with Ctrl+Shift+r.
-function Restart-Profile {
+function Update-Profile {
   $global:USERPROFILE = $true
   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
   [Microsoft.PowerShell.PSConsoleReadLine]::Insert('. $PROFILE')
@@ -9,7 +9,7 @@ function Restart-Profile {
 }
 
 if ($null -ne (Get-Module 'PSReadline')) {
-  Set-PSReadlineKeyHandler -Key Ctrl+Shift+r -ScriptBlock { Restart-Profile }
+  Set-PSReadlineKeyHandler -Key Ctrl+Shift+r -ScriptBlock { Update-Profile }
 }
 
 # Skip loading plugins if any flags/script path passed around to PowerShell.
