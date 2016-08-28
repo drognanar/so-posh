@@ -34,6 +34,7 @@ function AutoCompleteCd($isCommandToken, $commandTokenCandidate, $tokens) {
 }
 
 $global:PoshReadlineHandlers += { AutoCompleteCd @args }
-Set-PSReadlineKeyHandler -Key Ctrl+[ -ScriptBlock { Invoke-Shortcut 'cd -'  }
-Set-PSReadlineKeyHandler -Key Ctrl+] -ScriptBlock { Invoke-Shortcut 'cd +'  }
-Set-PSReadlineKeyHandler -Key Ctrl+\ -ScriptBlock { Invoke-Shortcut 'cd ..' }
+Set-PSReadlineKeyHandler -Key Ctrl+[       -ScriptBlock { Invoke-Shortcut 'cd -'  }
+Set-PSReadlineKeyHandler -Key Ctrl+]       -ScriptBlock { Invoke-Shortcut 'cd +'  }
+Set-PSReadlineKeyHandler -Key Ctrl+\       -ScriptBlock { Invoke-Shortcut 'cd ..' }
+Set-PSReadlineKeyHandler -Key Ctrl+Shift+\ -ScriptBlock { Invoke-Shortcut 'cd' }
