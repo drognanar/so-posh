@@ -18,6 +18,8 @@ if ($null -eq $script:SoPoshPlugins) {
     'pscx/path',
     'readline',
     'readline/bell',
+    'readline/help',
+    'readline/history',
     'readline/navigation',
     'readline/shebang',
     'themes',
