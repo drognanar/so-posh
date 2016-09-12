@@ -38,12 +38,12 @@ This will create a new module under `~\Documents\WindowsPowerShell\Modules\<name
 
 ```powershell
 $PROOT = [System.IO.Path]::GetDirectoryName($PROFILE)
-git clone https://github.com/drognanar/dotfiles $PROOT/Modules/dotfiles
-. $PROOT/Modules/dotfiles/install.ps1
+git clone https://github.com/drognanar/so-posh $PROOT/Modules/so-posh
+. $PROOT/Modules/so-posh/install.ps1
 ```
 
 
-> NOTE: You have to set execution policy to RemoveSigned in order to run the fetched dotfiles.
+> NOTE: You have to set execution policy to RemoteSigned in order to run the fetched dotfiles (run `Set-ExecutionPolicy RemoteSigned` when running powershell as administrator).
 
 By default plugins are not loaded in order to minimize startup time (especially since $PROFILE is loaded when any powershell script starts).
 If you wish to start modules automatically set `$global:USERPROFILE = $true` in $PROFILE.
