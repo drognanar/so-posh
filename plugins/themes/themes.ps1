@@ -4,7 +4,8 @@ $script:SoPoshTemplateManager = New-Object PSObject -Property @{
 }
 
 function global:prompt {
-  . $script:SoPoshTemplateManager.themes[$script:SoPoshTemplateManager.activeTheme]
+  $ret = . $script:SoPoshTemplateManager.themes[$script:SoPoshTemplateManager.activeTheme]
+  return $ret
 }
 
 <#
@@ -12,6 +13,10 @@ function global:prompt {
   Returns whether a command should be treated as long running and should generate a notification.
 #>
 function Test-LongRunningCommand($commandExecutionInfo) {
+  if ($null -eq $commandExecutionInfo) {
+    return $false
+  }
+
   $timeTaken = $lastExecutingCommand.ExecutionTime
   if ($timeTaken.TotalSeconds -lt $script:SoPoshLastCommandNotificationTimeout) {
     return $false
@@ -52,7 +57,11 @@ function New-LastCommandNotification {
     return
   }
 
-  $lastExecutingCommand = (Get-ExecutionTime)[-1]
+  $executionTimes = Get-ExecutionTime
+  if ($null -ne $executionTimes) {
+    $lastExecutingCommand = $executionTimes[-1]
+  }
+
   if (Test-LongRunningCommand $lastExecutingCommand) {
     New-SuccessNotification $lastExecutingCommand.HistoryInfo
   }
