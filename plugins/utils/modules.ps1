@@ -2,10 +2,14 @@
 .SYNOPSIS
   Add an Import-Module statement for a particular module to $Profile if one is missing.
 #>
-function Add-SoPoshModuleToProfile($ModuleName) {
+function Add-SoPoshModuleToProfile($ModuleName, [switch]$ReloadModule=$false) {
   $profileContent = Get-Content $PROFILE -Raw
   if ($profileContent -notmatch "Import-Module $ModuleName") {
-    "`nRemove-Module $ModuleName -ErrorAction SilentlyContinue" | Add-Content $PROFILE
+    "`n" | Add-Content $PROFILE
+
+    if ($ReloadModule) {
+      "Remove-Module $ModuleName -ErrorAction SilentlyContinue" | Add-Content $PROFILE
+    }
     "Import-Module $ModuleName -DisableNameChecking" | Add-Content $PROFILE
   }
 }
@@ -31,7 +35,7 @@ function New-SoPoshModule($ModuleName) {
   if (-not [System.IO.Directory]::Exists($moduleDir)) {
     Copy-Item -Recurse $moduleTemplatePath $moduleDir
     Move-Item $initPath $modulePath
-    Add-SoPoshModuleToProfile $ModuleName
+    Add-SoPoshModuleToProfile $ModuleName -ReloadModule
     Import-Module $ModuleName -Global
   }
 }
