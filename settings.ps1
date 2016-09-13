@@ -3,10 +3,7 @@
 $script:SoPoshAutoloadModules = $global:SoPoshAutoloadModules
 if ($null -eq $script:SoPoshAutoloadModules) {
   $script:SoPoshAutoloadModules = @(
-    "PSReadline",
-    "pscx",
-    "posh-git",
-    "Jump.Location")
+    "pscx")
 }
 
 # By default load all plugins.
