@@ -76,7 +76,10 @@ function Invoke-Shortcut($code, [Switch]$silent=$false) {
 $global:PoshReadlineHandlers = @()
 
 # Set a keyboard shortcut that executes readline handlers.
-Set-PSReadlineKeyHandler -Key Enter -ScriptBlock { Invoke-PoshReadlineHandlers }
+Set-PSReadlineKeyHandler -BriefDescription AcceptRewriteLine `
+                         -LongDescription 'Perform readline rewrites and accept line' `
+                         -Key Enter `
+                         -ScriptBlock { Invoke-PoshReadlineHandlers }
 
 # And a keyboard shortcut that does not execute readline handlers.
 Set-PSReadlineKeyHandler -Key Ctrl+Enter AcceptLine

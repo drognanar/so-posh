@@ -10,16 +10,17 @@ An Oh-My-Zsh inspired set of dotfiles for PowerShell (PoSh).
     * Go to parent folder with `Ctrl+\`
 * Notifications
     * `New-Notification` - create a tooltip notification
-    * Automatically notify of long running commands
+    * Automatically notify when long running commands complete
 * Git
     * `New-Gitignore` - create gitignore files (based on [gitignore.io](http://gitignore.io))
     * `Get-PR` - fetch a PR from github
 * Readline
     * Run files with shebang by entering a filename
     * `Set-ActiveTheme` - specify a theme used to generate a prompt
-    * `Register-Theme` - create a new prompt
+    * `Register-Theme` - register a new prompt theme
 * Utilities
     * `Invoke-InDir` - execute a command in a specific directory
+    * `Invoke-Shortcut` - type in a specific command into prompt and press enter
     * `Show-CommandDetails` - show command definition. If no parameters given displays all commands
     * `Update-Profile` - reload dotfiles. Bound to: `Ctrl+Shift+R` and `F5`
     * `Edit-Profile` - edit dotfiles. Bound to `Ctrl+Shift+E` and `F12`
@@ -49,6 +50,8 @@ git clone https://github.com/drognanar/so-posh $PROOT/Modules/so-posh
 By default plugins are not loaded in order to minimize startup time (especially since $PROFILE is loaded when any powershell script starts).
 If you wish to start modules automatically set `$global:USERPROFILE = $true` in $PROFILE.
 Or, you should create a shortcut for powershell that invokes `powershell -NoExit "%userprofile%\Documents\WindowsPowerShell\userprofile.ps1"`.
+
+# Themes
 
 # Settings
 

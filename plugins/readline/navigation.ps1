@@ -34,7 +34,23 @@ function AutoCompleteCd($isCommandToken, $commandTokenCandidate, $tokens) {
 }
 
 $global:PoshReadlineHandlers += { AutoCompleteCd @args }
-Set-PSReadlineKeyHandler -Key Ctrl+[       -ScriptBlock { Invoke-Shortcut 'cd -'  }
-Set-PSReadlineKeyHandler -Key Ctrl+]       -ScriptBlock { Invoke-Shortcut 'cd +'  }
-Set-PSReadlineKeyHandler -Key Ctrl+\       -ScriptBlock { Invoke-Shortcut 'cd ..' }
-Set-PSReadlineKeyHandler -Key Ctrl+Shift+\ -ScriptBlock { Invoke-Shortcut 'cd' }
+
+Set-PSReadlineKeyHandler -BriefDescription SetPreviousLocation `
+                         -LongDescription 'Change directory to previous location' `
+                         -Key Ctrl+[ `
+                         -ScriptBlock { Set-LocationEx -;  [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()  }
+
+Set-PSReadlineKeyHandler -BriefDescription SetNextLocation `
+                         -LongDescription 'Change directory to next location' `
+                         -Key Ctrl+] `
+                         -ScriptBlock { Set-LocationEx +;  [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt()  }
+
+Set-PSReadlineKeyHandler -BriefDescription SetParentLocation `
+                         -LongDescription 'Change directory to parent location' `
+                         -Key Ctrl+\ `
+                         -ScriptBlock { Set-LocationEx ..; [Microsoft.PowerShell.PSConsoleReadLine]::InvokePrompt() }
+
+Set-PSReadlineKeyHandler -BriefDescription GetLocationStack `
+                         -LongDescription 'Show history of visited directories' `
+                         -Key Ctrl+Shift+\ `
+                         -ScriptBlock { Invoke-Shortcut cd }

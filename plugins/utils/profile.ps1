@@ -17,7 +17,18 @@ function Edit-Profile() {
   & $env:EDITOR $PROOT
 }
 
-Set-PSReadlineKeyHandler -Key Ctrl+Shift+r -ScriptBlock { Update-Profile }
-Set-PSReadlineKeyHandler -Key F5 -ScriptBlock           { Update-Profile }
-Set-PSReadlineKeyHandler -Key Ctrl+Shift+e -ScriptBlock { Edit-Profile }
-Set-PSReadlineKeyHandler -Key F12 -ScriptBlock          { Edit-Profile }
+Set-PSReadlineKeyHandler -BriefDescription UpdateProfile `
+                         -LongDescription 'Reloads the powershell profile' `
+                         -Key Ctrl+Shift+r -ScriptBlock { Update-Profile }
+
+Set-PSReadlineKeyHandler -BriefDescription UpdateProfile `
+                         -LongDescription 'Reloads the powershell profile' `
+                         -Key F5 -ScriptBlock           { Update-Profile }
+
+Set-PSReadlineKeyHandler -BriefDescription EditProfile `
+                         -LongDescription 'Opens a text editor with profile directory' `
+                         -Key Ctrl+Shift+e -ScriptBlock { Edit-Profile }
+
+Set-PSReadlineKeyHandler -BriefDescription EditProfile `
+                         -LongDescription 'Opens a text editor with profile directory' `
+                         -Key F12 -ScriptBlock          { Edit-Profile }
