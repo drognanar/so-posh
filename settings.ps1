@@ -48,7 +48,7 @@ if ($null -eq $script:SoPoshVisualStudioVersion) {
 # If greater than 0 then prompt will notify of any commands that executed for more seconds than the timeout.
 $script:SoPoshLastCommandNotificationTimeout = $global:SoPoshLastCommandNotificationTimeout
 if ($null -eq $script:SoPoshLastCommandNotificationTimeout) {
-  $script:SoPoshLastCommandNotificationTimeout = 0
+  $script:SoPoshLastCommandNotificationTimeout = 60
 }
 
 # Do not make a notification if one of the following commands executes for a long time.
