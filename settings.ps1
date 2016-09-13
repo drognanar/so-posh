@@ -1,4 +1,3 @@
-# TODO(drognanar): Can we defer loading the following modules?
 # By default load modules.
 $script:SoPoshAutoloadModules = $global:SoPoshAutoloadModules
 if ($null -eq $script:SoPoshAutoloadModules) {

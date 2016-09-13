@@ -28,7 +28,7 @@ Set-PSReadlineKeyHandler -Key F1 `
       }
 
       if ($commandName -ne $null) {
-        Invoke-Shortcut "(Get-Help $commandName).Syntax | more"
+        Get-Help $commandName -ShowWindow
       }
     }
   }

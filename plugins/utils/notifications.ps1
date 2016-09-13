@@ -1,4 +1,3 @@
-# TODO(drognanar): Resolve PowerShell appearing too many times in the notification center.
 <#
 .SYNOPSIS
   Create a PowerShell notification.
