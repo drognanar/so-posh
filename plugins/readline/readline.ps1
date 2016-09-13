@@ -63,7 +63,7 @@ function Invoke-PoshReadlineHandlers {
   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 
-function Invoke-Shortcut($Code, [switch]$AddCurrentLineToHistory) {
+function Invoke-Shortcut($Code, [switch]$AddCurrentLineToHistory, [switch]$SkipAcceptLine) {
   if ($AddCurrentLineToHistory) {
     $line = $null
     $cursor = $null
@@ -73,7 +73,10 @@ function Invoke-Shortcut($Code, [switch]$AddCurrentLineToHistory) {
 
   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
   [Microsoft.PowerShell.PSConsoleReadLine]::Insert($Code)
-  [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+
+  if (-not $SkipAcceptLine) {
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
+  }
 }
 
 $global:PoshReadlineHandlers = @()
