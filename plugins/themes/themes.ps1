@@ -12,8 +12,8 @@ function global:prompt {
 .SYNOPSIS
   Returns whether a command should be treated as long running and should generate a notification.
 #>
-function Test-LongRunningCommand($commandExecutionInfo) {
-  if ($null -eq $commandExecutionInfo) {
+function Test-LongRunningCommand($CommandExecutionInfo) {
+  if ($null -eq $CommandExecutionInfo) {
     return $false
   }
 
@@ -36,16 +36,16 @@ function Test-LongRunningCommand($commandExecutionInfo) {
 .SYNOPSIS
   Add a new user theme.
 #>
-function Register-Theme($templateName, $script) {
-  $script:SoPoshTemplateManager.themes[$templateName] = $script
+function Register-Theme($TemplateName, $Script) {
+  $script:SoPoshTemplateManager.themes[$TemplateName] = $Script
 }
 
 <#
 .SYNOPSIS
   Sets the theme which is used to generate the prompt.
 #>
-function Set-ActiveTheme($templateName) {
-  $script:SoPoshTemplateManager.activeTheme = $templateName
+function Set-ActiveTheme($TemplateName) {
+  $script:SoPoshTemplateManager.activeTheme = $TemplateName
 }
 
 <#

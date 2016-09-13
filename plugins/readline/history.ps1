@@ -7,7 +7,7 @@ Set-PSReadlineKeyHandler -Key Alt+w `
                          -BriefDescription SaveInHistory `
                          -LongDescription "Save current line in history but do not execute" `
                          -ScriptBlock {
-    param($key, $arg)
+    param($Key, $Arg)
 
     $line = $null
     $cursor = $null

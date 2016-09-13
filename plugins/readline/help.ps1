@@ -4,7 +4,7 @@ Set-PSReadlineKeyHandler -Key F1 `
                          -BriefDescription CommandHelp `
                          -LongDescription "Open the help window for the current command" `
                          -ScriptBlock {
-  param($key, $arg)
+  param($Key, $Arg)
 
   $ast = $null
   $tokens = $null

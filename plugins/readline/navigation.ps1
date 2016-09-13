@@ -15,17 +15,17 @@ if (($null -eq (Get-Module "PSReadline" -ErrorAction SilentlyContinue)) -or ($sc
   The completion triggers only if an invalid command was entered.
   Typing `~/Documents/` will execute `cd ~/Documents/`
 #>
-function AutoCompleteCd($isCommandToken, $commandTokenCandidate, $tokens) {
-  $potentialPath = Get-PSReadlineTokenValue $commandTokenCandidate
-  $isFinalToken = $tokens[-1] -eq $commandTokenCandidate -or $tokens[-2] -eq $commandTokenCandidate
+function AutoCompleteCd($IsCommandToken, $CommandTokenCandidate, $Tokens) {
+  $potentialPath = Get-PSReadlineTokenValue $CommandTokenCandidate
+  $isFinalToken = $Tokens[-1] -eq $CommandTokenCandidate -or $Tokens[-2] -eq $CommandTokenCandidate
   if ([string]::IsNullOrEmpty($potentialPath) -or -not $isFinalToken) {
     return $false
   }
 
-  if (-not $isCommandToken -and -not ($potentialPath -eq $null)) {
+  if (-not $IsCommandToken -and -not ($potentialPath -eq $null)) {
     $existsDir = [IO.Directory]::Exists((Resolve-Path $potentialPath))
     if ($existsDir) {
-      [Microsoft.PowerShell.PSConsoleReadLine]::Replace(0, $commandTokenCandidate.extent.StartOffset, "cd ")
+      [Microsoft.PowerShell.PSConsoleReadLine]::Replace(0, $CommandTokenCandidate.extent.StartOffset, "cd ")
       return $true
     }
   }

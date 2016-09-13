@@ -15,12 +15,12 @@ $script:SoPoshAutoloadModules | % {
 }
 
 # Loads a single plugin.
-function Import-PoshPlugin($plugin) {
-  if ("" -eq [System.IO.Path]::GetDirectoryName($plugin)) {
-    $plugin = "$plugin\$plugin"
+function Import-PoshPlugin($Plugin) {
+  if ("" -eq [System.IO.Path]::GetDirectoryName($Plugin)) {
+    $Plugin = "$Plugin\$Plugin"
   }
 
-  $scriptPath = Join-Path $PSScriptRoot "plugins\$plugin.ps1"
+  $scriptPath = Join-Path $PSScriptRoot "plugins\$Plugin.ps1"
   Write-Verbose "Loading plugin at $scriptPath"
   if ([System.IO.File]::Exists($scriptPath)) {
     . $scriptPath

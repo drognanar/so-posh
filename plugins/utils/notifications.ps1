@@ -7,13 +7,13 @@
   Can be used to notify about scripts status.
   Taken from https://technet.microsoft.com/en-us/library/ff730952.aspx
 #>
-function New-Notification($message, $title="", $icon="info") {
+function New-Notification($Message, $Title="", $Icon="info") {
   [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms")
   [void] [System.Reflection.Assembly]::LoadWithPartialName("System.Drawing")
   $objNotifyIcon = New-Object System.Windows.Forms.NotifyIcon
   $objNotifyIcon.Icon = [System.Drawing.SystemIcons]::Information
   $objNotifyIcon.Visible = $True
-  $objNotifyIcon.ShowBalloonTip(60000, $title, $message, $icon)
+  $objNotifyIcon.ShowBalloonTip(60000, $Title, $Message, $Icon)
   $objNotifyIcon.Visible = $False
 }
 

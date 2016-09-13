@@ -11,11 +11,11 @@ function Get-PSReadlineTokens {
   return $tokens
 }
 
-function Test-PSReadlineCommandToken($token) {
-  $isString = $token.Kind -eq "StringExpandable"
-  $isCommand = $token.TokenFlags.HasFlag([System.Management.Automation.Language.TokenFlags]::CommandName)
+function Test-PSReadlineCommandToken($Token) {
+  $isString = $Token.Kind -eq "StringExpandable"
+  $isCommand = $Token.TokenFlags.HasFlag([System.Management.Automation.Language.TokenFlags]::CommandName)
   if ($isCommand -or $isString) {
-    $tokenValue = Get-PSReadlineTokenValue $token
+    $tokenValue = Get-PSReadlineTokenValue $Token
     $command = Get-Command $tokenValue -ErrorAction SilentlyContinue
     if ($command -ne $null) { return $true }
     $resolvedPath = Resolve-Path $tokenValue -ErrorAction SilentlyContinue
@@ -28,21 +28,21 @@ function Test-PSReadlineCommandToken($token) {
   return $false
 }
 
-function Get-PSReadlineCommandTokenCandidate($tokens) {
-  if ($tokens.Length -eq 0) {
+function Get-PSReadlineCommandTokenCandidate($Tokens) {
+  if ($Tokens.Length -eq 0) {
     return $null
   }
 
-  $isAmpersand = $tokens[0].TokenFlags.HasFlag([System.Management.Automation.Language.TokenFlags]::SpecialOperator) -and $tokens[0].Kind -eq "Ampersand"
-  if ($tokens.Length -gt 1 -and $isAmpersand) {
-    return $tokens[1]
+  $isAmpersand = $Tokens[0].TokenFlags.HasFlag([System.Management.Automation.Language.TokenFlags]::SpecialOperator) -and $Tokens[0].Kind -eq "Ampersand"
+  if ($Tokens.Length -gt 1 -and $isAmpersand) {
+    return $Tokens[1]
   } else {
-    return $tokens[0]
+    return $Tokens[0]
   }
 }
 
-function Get-PSReadlineTokenValue($token) {
-  if ($token.value) { return $token.value } else { return $token.text }
+function Get-PSReadlineTokenValue($Token) {
+  if ($Token.value) { return $Token.value } else { return $Token.text }
 }
 
 # Gets the command that is being entered via readline.
@@ -63,8 +63,8 @@ function Invoke-PoshReadlineHandlers {
   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 
-function Invoke-Shortcut($code, [switch]$addCurrentLineToHistory) {
-  if ($addCurrentLineToHistory) {
+function Invoke-Shortcut($Code, [switch]$AddCurrentLineToHistory) {
+  if ($AddCurrentLineToHistory) {
     $line = $null
     $cursor = $null
     [Microsoft.PowerShell.PSConsoleReadLine]::GetBufferState([ref]$line, [ref]$cursor)
@@ -72,7 +72,7 @@ function Invoke-Shortcut($code, [switch]$addCurrentLineToHistory) {
   }
 
   [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-  [Microsoft.PowerShell.PSConsoleReadLine]::Insert($code)
+  [Microsoft.PowerShell.PSConsoleReadLine]::Insert($Code)
   [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
 }
 

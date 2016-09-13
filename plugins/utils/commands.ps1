@@ -8,10 +8,10 @@
   If name is specified displays command name along with its definition.
   If modules is missing displays commands from all modules.
 #>
-function Show-CommandDetails($name = $null, $modules=@()) {
-  if ($null -eq $name) {
-    Get-Command -All -Module $modules | sort name | select name, definition
+function Show-CommandDetails($Name = $null, $Modules=@()) {
+  if ($null -eq $Name) {
+    Get-Command -All -Module $Modules | sort name | select name, definition
   } else {
-    Get-Command $name | % { "name: $($_.Name)`ncommand: $($_.Definition)" }
+    Get-Command $Name | % { "name: $($_.Name)`ncommand: $($_.Definition)" }
   }
 }

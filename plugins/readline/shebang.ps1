@@ -20,15 +20,15 @@ if (($null -eq (Get-Module "PSReadline" -ErrorAction SilentlyContinue)) -or ($sc
   Typing `cd bin; a.rb` will not execute `ruby a.rb`
   Typing `bin/a.rb` will execute `ruby bin/a.rb`
 #>
-function AutoRunShebang($isCommandToken, $command) {
-  if (-not $isCommandToken) {
+function AutoRunShebang($IsCommandToken, $Command) {
+  if (-not $IsCommandToken) {
     return $false
   }
 
-  $potentialPath = Get-PSReadlineTokenValue $command
-  $isApplication = $command.CommandType -eq "Application"
-  $isSamePath = $command.Source -eq (Resolve-Path $potentialPath).Path
-  $isEqualCommand = $command.Name -eq $potentialPath
+  $potentialPath = Get-PSReadlineTokenValue $Command
+  $isApplication = $Command.CommandType -eq "Application"
+  $isSamePath = $Command.Source -eq (Resolve-Path $potentialPath).Path
+  $isEqualCommand = $Command.Name -eq $potentialPath
   if (-not $isApplication -or -not $isSamePath -or $isEqualCommand) {
     return $false
   }
@@ -47,7 +47,7 @@ function AutoRunShebang($isCommandToken, $command) {
     $shebangCommand = $matches[1]
   }
 
-  [Microsoft.PowerShell.PSConsoleReadLine]::Replace(0, $command.extent.StartOffset, "$shebangCommand ")
+  [Microsoft.PowerShell.PSConsoleReadLine]::Replace(0, $Command.extent.StartOffset, "$shebangCommand ")
   return $true
 }
 
