@@ -8,7 +8,8 @@
 #>
 function Enable-DeveloperCommandPrompt([Switch]$Force=$false) {
   if ($force -or ($null -eq $env:DevEnvDir)) {
-    Import-VisualStudioVars $script:SoPoshVisualStudioVersion
+    # Import-VisualStudioVars $script:SoPoshVisualStudioVersion
+    Invoke-BatchFile 'C:\Program Files (x86)\Microsoft Visual Studio 15\Common7\Tools\VsDevCmd.bat'
   }
 }
 
