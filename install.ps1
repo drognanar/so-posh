@@ -5,9 +5,9 @@ $SO_POSH_PROFILE_TEMPLATE_PATH = Join-Path $PSScriptRoot "profile/templates/Micr
 
 Write-Host "Installing so-posh..."
 Write-Host "> Installing modules..."
-Install-Module pscx -Scope CurrentUser
-Install-Module Jump.Location -Scope CurrentUser
-Install-Module posh-git -Scope CurrentUser
+Install-Module pscx -Scope CurrentUser -AllowClobber
+Install-Module Jump.Location -Scope CurrentUser -AllowClobber
+Install-Module posh-git -Scope CurrentUser -AllowClobber
 
 Write-Host "> Loading so-posh..."
 Import-Module so-posh
