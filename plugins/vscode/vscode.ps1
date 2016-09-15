@@ -4,8 +4,8 @@
 #>
 function Invoke-VsCode([switch]$NewWindow) {
   if ($NewWindow) {
-    code.cmd -r @args
-  } else {
     code.cmd @args
+  } else {
+    code.cmd -r @args
   }
 }
