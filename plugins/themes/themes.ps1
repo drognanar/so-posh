@@ -62,6 +62,12 @@ function New-LastCommandNotification {
     $lastExecutingCommand = $executionTimes[-1]
   }
 
+  if ($script:lastExecutingCommandId -eq $lastExecutingCommand.Id) {
+    return
+  }
+
+  $script:lastExecutingCommandId = $lastExecutingCommand.Id
+
   if (Test-LongRunningCommand $lastExecutingCommand) {
     New-SuccessNotification $lastExecutingCommand.HistoryInfo
   }
